@@ -1,0 +1,376 @@
+{% extends "base.html" %}
+
+{% block title %}Construction Prices | JANG BANJ{% endblock %}
+
+{% block content %}
+
+<section class="price-page">
+
+    <div class="price-banner">
+        <div>
+            <span class="section-kicker">
+                JANG BANJ CONSTRUCTION & ENGINEERING COMPANY
+            </span>
+
+            <h1>CONSTRUCTION PRICE LIST</h1>
+
+            <p>
+                Professional construction pricing • Prices in South Sudanese Pounds (SSP) and US Dollars (USD)
+            </p>
+        </div>
+
+        <div class="date-box">
+            <span>DATE UPDATED</span>
+            <strong>{{ updated }}</strong>
+        </div>
+    </div>
+
+
+    <div class="notes">
+        <strong>NOTE:</strong>
+        Prices are indicative and may be updated according to material,
+        labour, project location and market conditions.
+    </div>
+
+
+    {% for category, items in grouped %}
+
+    <section class="price-table-card">
+
+        <div class="category-title">
+            {{ category["name"] }}
+        </div>
+
+        <div class="price-table">
+
+            <!-- TABLE HEADER -->
+            <div class="table-head">
+                <span>ITEM / DESCRIPTION</span>
+                <span>PRICE (SSP)</span>
+                <span>PRICE (USD)</span>
+            </div>
+
+
+            <!-- TABLE ROWS -->
+            {% for item in items %}
+
+            <div class="table-row">
+
+                <!-- ITEM / DESCRIPTION -->
+                <span class="item-description">
+                    {{ item["description"] }}
+
+                    {% if item["unit"] %}
+                        <small>({{ item["unit"] }})</small>
+                    {% endif %}
+                </span>
+
+
+                <!-- SSP PRICE -->
+                <strong class="price-ssp">
+                    {{ "{:,.0f}".format(item["price_ssp"] or 0) }} SSP
+                </strong>
+
+
+                <!-- USD PRICE -->
+                <strong class="price-usd">
+                    ${{ "{:,.2f}".format(item["price_usd"] or 0) }} USD
+                </strong>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endfor %}
+
+</section>
+
+
+<style>
+
+/* ============================================================
+   PRICE PAGE
+   ============================================================ */
+
+.price-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 70px;
+}
+
+
+/* ============================================================
+   PRICE BANNER
+   ============================================================ */
+
+.price-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.price-banner h1 {
+    margin: 8px 0;
+}
+
+.price-banner p {
+    margin: 0;
+}
+
+
+/* ============================================================
+   DATE BOX
+   ============================================================ */
+
+.date-box {
+    min-width: 150px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.date-box span {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.date-box strong {
+    font-size: 15px;
+}
+
+
+/* ============================================================
+   NOTE
+   ============================================================ */
+
+.notes {
+    margin-bottom: 30px;
+    padding: 15px 18px;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   PRICE TABLE CARD
+   ============================================================ */
+
+.price-table-card {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   CATEGORY TITLE
+   ============================================================ */
+
+.category-title {
+    padding: 16px 20px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+/* ============================================================
+   PRICE TABLE
+   ============================================================ */
+
+.price-table {
+    width: 100%;
+}
+
+
+/* ============================================================
+   TABLE HEADER
+   Three columns:
+   1. Description
+   2. SSP
+   3. USD
+   ============================================================ */
+
+.table-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px 190px;
+    align-items: center;
+    gap: 0;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+/* ============================================================
+   TABLE ROW
+   ============================================================ */
+
+.table-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px 190px;
+    align-items: center;
+    gap: 0;
+    min-height: 58px;
+    padding: 10px 20px;
+}
+
+
+/* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+.item-description {
+    padding-right: 20px;
+    line-height: 1.5;
+}
+
+.item-description small {
+    font-size: 12px;
+    opacity: 0.75;
+}
+
+
+/* ============================================================
+   SSP COLUMN
+   ============================================================ */
+
+.price-ssp {
+    display: block;
+    white-space: nowrap;
+    text-align: right;
+    padding-right: 25px;
+}
+
+
+/* ============================================================
+   USD COLUMN
+   ============================================================ */
+
+.price-usd {
+    display: block;
+    white-space: nowrap;
+    text-align: right;
+}
+
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .price-page {
+        padding: 25px 10px 50px;
+    }
+
+    .price-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .date-box {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .table-head,
+    .table-row {
+        grid-template-columns: minmax(0, 1fr) 120px 110px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .table-head {
+        font-size: 11px;
+    }
+
+    .table-row {
+        font-size: 13px;
+    }
+
+    .price-ssp {
+        padding-right: 10px;
+    }
+
+    .price-ssp,
+    .price-usd {
+        font-size: 12px;
+    }
+
+}
+
+
+/* ============================================================
+   VERY SMALL SCREENS
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+    .table-head,
+    .table-row {
+        grid-template-columns: minmax(0, 1fr) 100px 90px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .item-description {
+        padding-right: 8px;
+    }
+
+    .price-ssp {
+        padding-right: 5px;
+    }
+
+    .price-ssp,
+    .price-usd {
+        font-size: 11px;
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+### The result
+
+The desktop table will now have exactly this structure:
+
+ text
+ITEM / DESCRIPTION                 PRICE (SSP)          PRICE (USD)
+---------------------------------------------------------------------------
+Site preparation / site works       900,000 SSP           $100.00 USD
+Total station / site surveying    1,800,000 SSP           $250.00 USD
+Excavation per cubic meter           70,000 SSP            $50.00 USD
+White sand per cubic meter           50,000 SSP            $35.00 USD
+
+
+So **SSP and USD are separate columns and remain on the same line**.
+
+Also, I changed:
+
+   jinja2
+item["price_ssp"]
+
+
+to:
+
+   jinja2
+item["price_ssp"] or 0
+
+
+and similarly for USD. This prevents the `Undefined.__format__` error you were getting if a value is missing.
+
+**One important point:** this `prices.html` assumes your `app.py` has already been updated to provide `price_ssp` and `price_usd`. Your uploaded `app.py` currently still defines the old `price` column, so the database/Flask changes discussed above are also required.
+
+If you want the **admin dashboard to also show/edit SSP and USD side-by-side**, that part needs to be updated too.

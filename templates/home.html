@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+{% block title %}JANG BANJ | Construction & Engineering{% endblock %}
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <p class="eyebrow">JANG BANJ CONSTRUCTION & ENGINEERING COMPANY</p>
+        <h1>WE BUILD YOUR VISION</h1>
+        <p>Professional construction, engineering, finishing and building services.</p>
+
+
+    <div class="hero-actions">
+        <a class="btn primary" href="{{ url_for('prices') }}">
+            View Construction Prices
+        </a>
+        <a class="btn outline" href="#contact">
+            Contact Us
+        </a>
+    </div>
+</div>
+
+
+</section>
+
+<section class="section intro">
+    <div>
+        <span class="section-kicker">WELCOME</span>
+        <h2>Building with quality, integrity and commitment.</h2>
+
+
+    <p>
+        JANG BANJ Construction & Engineering Company provides practical
+        construction solutions from site works and foundations to concrete
+        structures, masonry, painting and complete finishing.
+    </p>
+</div>
+
+<div class="quality-card">
+    <strong>QUALITY</strong>
+    <strong>INTEGRITY</strong>
+    <strong>SAFETY</strong>
+    <strong>COMMITMENT</strong>
+    <strong>EXCELLENCE</strong>
+</div>
+
+
+</section>
+
+<section class="section" id="services">
+
+
+<div class="section-heading">
+    <span class="section-kicker">OUR SERVICES</span>
+    <h2>Complete Building & Finishing Services</h2>
+</div>
+
+<div class="service-grid">
+
+    {% for title, icon, desc in [
+        ("Site Works", "⌖", "Site preparation, surveying and earthworks."),
+        ("Foundations", "⌗", "Excavation, reinforcement and foundation works."),
+        ("Concrete Structure", "▥", "Columns, slabs and reinforced concrete works."),
+        ("Masonry", "▦", "Professional block and brick masonry."),
+        ("Plastering & Painting", "▰", "Interior and exterior finishing."),
+        ("Complete Finishing", "⌂", "Building finishing and handover solutions.")
+    ] %}
+
+    <article class="service-card">
+        <div class="service-icon">{{ icon }}</div>
+        <h3>{{ title }}</h3>
+        <p>{{ desc }}</p>
+    </article>
+
+    {% endfor %}
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     PROJECT GALLERY
+     Supports up to 50 project images
+     ========================================================= -->
+
+<section class="section projects" id="projects">
+
+```
+<div class="section-heading">
+    <span class="section-kicker">OUR PROJECTS</span>
+
+    <h2>Our Construction Projects</h2>
+
+    <p>
+        Explore our construction projects, site works, foundations,
+        concrete structures, masonry and finishing works.
+    </p>
+</div>
+<section class="projects">
+    <div class="container">
+
+        <div class="section-heading">
+            <p class="eyebrow">OUR WORK</p>
+            <h2>OUR PROJECTS</h2>
+            <p>
+                Explore some of our construction and engineering projects.
+            </p>
+        </div>
+
+        <div class="project-gallery">
+
+            {% for image in images %}
+
+            <div class="project-card">
+                <img
+                    src="{{ url_for('static', filename='images/' + image) }}"
+                    alt="JANG BANJ Construction Project"
+                    loading="lazy"
+                >
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+
+<div class="project-gallery">
+
+    {% for i in range(1, 51) %}
+
+    <div class="project-image-card">
+
+        <img
+            src="{{ url_for('static', filename='images/projects/project' ~ i ~ '.jpg') }}"
+            alt="JANG BANJ Construction Project {{ i }}"
+            loading="lazy"
+            onerror="this.parentElement.style.display='none';"
+        >
+
+        <div class="project-overlay">
+            <h3>Construction Project {{ i }}</h3>
+            <p>
+                JANG BANJ Construction & Engineering project.
+            </p>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+```
+
+</section>
+
+<section class="section price-preview">
+
+```
+<div class="section-heading">
+
+    <span class="section-kicker">LATEST PRICE LIST</span>
+
+    <h2>Construction Prices in SSP/USD</h2>
+
+    <p>
+        Prices can be updated from the administration dashboard
+        without redesigning the website.
+    </p>
+
+</div>
+
+
+{% for category, items in grouped %}
+
+    {% if items %}
+
+    <div class="price-category">
+
+        <h3>{{ category["name"] }}</h3>
+
+        {% for item in items[:3] %}
+
+        <div class="price-row">
+
+            <span>{{ item["description"] }}</span>
+
+            <strong>
+                {{ "{:,.0f}".format(item["price"]) }}
+                SSP/USD
+
+                {% if item["unit"] %}
+                    / {{ item["unit"] }}
+                {% endif %}
+
+            </strong>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+{% endfor %}
+
+
+<a class="btn primary" href="{{ url_for('prices') }}">
+    See Full Price List
+</a>
+```
+
+</section>
+
+<section class="contact-section" id="contact">
+
+```
+<div>
+
+    <span class="section-kicker">CONTACT US</span>
+
+    <h2>We are here to serve you anytime.</h2>
+
+    <p>Phone: +211 920504386</p>
+    <p>WhatsApp: +211 917991205 </p>
+    <p>Email: info@jangbanj.com</p>
+    <p>Location: Juba South Sudan</p>
+
+</div>
+
+
+<div class="contact-box">
+
+    <strong>LET'S BUILD YOUR VISION</strong>
+
+    <p>
+        Ask us for a quotation, price list or construction consultation.
+    </p>
+
+</div>
+
+
+</section>
+
+{% endblock %}

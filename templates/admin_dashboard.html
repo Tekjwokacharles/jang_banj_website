@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard | JANG BANJ{% endblock %}
+{% block content %}
+<section class="admin-page">
+    <div class="admin-header">
+        <div>
+            <span class="section-kicker">ADMINISTRATION</span>
+            <h1>Price Management Dashboard</h1>
+        </div>
+        <a class="btn outline" href="{{ url_for('admin_logout') }}">Logout</a>
+    </div>
+
+    <div class="admin-card">
+        <h2>Add Price Item</h2>
+        <form class="admin-form" method="post" action="{{ url_for('add_price') }}">
+            <select name="category_id" required>
+                {% for category, items in grouped %}
+                <option value="{{ category['id'] }}">{{ category['name'] }}</option>
+                {% endfor %}
+            </select>
+            <input name="description" placeholder="Item / description" required>
+            <input name="price" type="number" step="0.01" placeholder="Price (SSP/USD)" required>
+            <input name="unit" placeholder="Unit e.g. m², m³, job">
+            <button class="btn primary" type="submit">Add Price</button>
+        </form>
+    </div>
+
+    <div class="admin-card">
+        <h2>Add Category</h2>
+        <form class="admin-form" method="post" action="{{ url_for('add_category') }}">
+            <input name="name" placeholder="Category name" required>
+            <button class="btn primary" type="submit">Add Category</button>
+        </form>
+    </div>
+
+    {% for category, items in grouped %}
+    <div class="admin-card">
+        <h2>{{ category["name"] }}</h2>
+        {% for item in items %}
+        <form class="edit-row" method="post" action="{{ url_for('edit_price', item_id=item['id']) }}">
+            <input name="description" value="{{ item['description'] }}" required>
+            <input name="price" type="number" step="0.01" value="{{ item['price'] }}" required>
+            <input name="unit" value="{{ item['unit'] }}" placeholder="Unit">
+            <button class="btn small primary" type="submit">Save</button>
+            <button class="btn small danger" type="submit"
+                    formaction="{{ url_for('delete_price', item_id=item['id']) }}"
+                    onclick="return confirm('Delete this price item?')">Delete</button>
+        </form>
+        {% else %}
+        <p class="muted">No items in this category.</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

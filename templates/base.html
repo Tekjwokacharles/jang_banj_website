@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        {% block title %}
+        JANG BANJ Construction & Engineering
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="topbar">
+
+        <!-- COMPANY LOGO -->
+        <a class="brand" href="{{ url_for('home') }}">
+            <img
+                src="{{ url_for('static', filename='images/jang_banj_logo.jpg') }}"
+                alt="JANG BANJ Construction & Engineering logo">
+        </a>
+
+
+        <!-- MAIN NAVIGATION -->
+        <nav class="main-nav">
+
+    <a href="{{ url_for('home') }}">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </a>
+
+    <a href="{{ url_for('prices') }}">
+        <i class="fa-solid fa-tags"></i>
+        <span>Prices</span>
+    </a>
+
+    <a href="{{ url_for('home') }}#services">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <span>Services</span>
+    </a>
+
+    <a href="{{ url_for('gallery') }}">
+        <i class="fa-solid fa-building"></i>
+        <span>Projects</span>
+    </a>
+
+    <a href="{{ url_for('home') }}#contact">
+        <i class="fa-solid fa-phone"></i>
+        <span>Contact</span>
+    </a>
+
+    <!-- ADMIN -->
+    <a href="{{ url_for('admin_login') }}" class="admin-nav">
+        <i class="fa-solid fa-user-shield"></i>
+        <span>Admin</span>
+    </a>
+
+</nav>
+
+    </div>
+
+</header>
+
+
+<!-- FLASH MESSAGES -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        <div class="flash-wrap">
+
+            {% for category, message in messages %}
+
+                <div class="flash {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+{% endwith %}
+
+
+<!-- PAGE CONTENT -->
+
+{% block content %}{% endblock %}
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div>
+            <strong>JANG BANJ</strong>
+            <span>a contractor you can trust</span>
+        </div>
+
+        <div>
+            © {{ current_year }}
+            JANG BANJ Construction & Engineering Company
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

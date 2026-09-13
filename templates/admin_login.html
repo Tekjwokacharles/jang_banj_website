@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Admin Login | JANG BANJ{% endblock %}
+{% block content %}
+<div class="auth-page">
+    <form class="auth-card" method="post">
+        <h1>Admin Login</h1>
+        <p>Manage construction prices and website content.</p>
+        <label>Username</label>
+        <input name="username" required>
+        <label>Password</label>
+        <input name="password" type="password" required>
+        <button class="btn primary" type="submit">Login</button>
+        <small>login: admin </small>
+    </form>
+</div>
+{% endblock %}

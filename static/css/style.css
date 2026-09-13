@@ -1,0 +1,1554 @@
+/* ============================================================
+   JANG BANJ CONSTRUCTION & ENGINEERING
+   PROFESSIONAL WEBSITE STYLES
+   ============================================================ */
+
+
+/* ============================================================
+   GLOBAL
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #0b2b52;
+    --blue: #173f73;
+    --gold: #d7a900;
+    --light: #f5f7fa;
+    --line: #d9e0e8;
+    --text: #172033;
+    --muted: #687386;
+    --white: #ffffff;
+    --dark: #071d36;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background: #ffffff;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.site-header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 2px 12px rgba(11, 43, 82, 0.08);
+}
+
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+
+.topbar {
+    width: 100%;
+    max-width: 1400px;
+    min-height: 82px;
+    margin: 0 auto;
+    padding: 10px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.brand img {
+    width: 155px;
+    height: 65px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.brand:hover img {
+    transform: scale(1.04);
+}
+
+
+/* ============================================================
+   MAIN NAVIGATION
+   ============================================================ */
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.main-nav a {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+    padding: 11px 14px;
+
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 700;
+
+    border-radius: 7px;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.main-nav a i {
+    font-size: 15px;
+    color: var(--navy);
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.main-nav a:hover {
+    background: #f3f5f8;
+    color: var(--gold);
+    transform: translateY(-1px);
+}
+
+.main-nav a:hover i {
+    color: var(--gold);
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   NAVIGATION UNDERLINE
+   ============================================================ */
+
+.main-nav a::after {
+    content: "";
+
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 4px;
+
+    height: 2px;
+
+    background: var(--gold);
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform 0.25s ease;
+}
+
+.main-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+    min-height: 520px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 28, 55, 0.96),
+            rgba(8, 48, 90, 0.78)
+        ),
+        url("../images/jang_banj_logo.jpg") center / cover no-repeat;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 70px 25px;
+
+    color: white;
+}
+
+.eyebrow,
+.section-kicker {
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 82px);
+    margin: 15px 0 8px;
+    line-height: 0.95;
+}
+
+.hero p {
+    max-width: 650px;
+    font-size: 20px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn {
+    display: inline-block;
+
+    border: 0;
+    padding: 12px 20px;
+    border-radius: 4px;
+
+    font-weight: 800;
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn.primary {
+    background: var(--gold);
+    color: #101010;
+}
+
+.btn.primary:hover {
+    background: #edc000;
+    box-shadow: 0 6px 18px rgba(215, 169, 0, 0.25);
+}
+
+.btn.outline {
+    border: 2px solid currentColor;
+    color: var(--navy);
+    background: white;
+}
+
+.hero .btn.outline {
+    color: white;
+    background: transparent;
+}
+
+.hero .btn.outline:hover {
+    background: white;
+    color: var(--navy);
+}
+
+.btn.small {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+.btn.danger {
+    background: #b42318;
+    color: white;
+}
+
+.btn.danger:hover {
+    background: #921b12;
+}
+
+
+/* ============================================================
+   GENERAL SECTIONS
+   ============================================================ */
+
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 75px 25px;
+}
+
+h2 {
+    font-size: 38px;
+    color: var(--navy);
+    margin: 10px 0 15px;
+}
+
+.intro {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.intro p,
+.section-heading p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #596579;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+
+/* ============================================================
+   QUALITY CARD
+   ============================================================ */
+
+.quality-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.quality-card strong {
+    padding: 22px;
+
+    background: var(--navy);
+    color: white;
+
+    border-left: 5px solid var(--gold);
+}
+
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.service-card {
+    padding: 28px;
+
+    border: 1px solid var(--line);
+    background: white;
+
+    box-shadow: 0 8px 25px rgba(11, 43, 82, 0.07);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(11, 43, 82, 0.12);
+}
+
+.service-icon {
+    font-size: 35px;
+    color: var(--gold);
+}
+
+.service-card h3 {
+    color: var(--navy);
+    margin: 12px 0 8px;
+}
+
+.service-card p {
+    color: #687386;
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   PROJECT SECTION
+   ============================================================ */
+
+.projects {
+    background: var(--light);
+
+    max-width: none;
+
+    padding-left: max(25px, calc((100% - 1200px) / 2));
+    padding-right: max(25px, calc((100% - 1200px) / 2));
+}
+
+
+/* ============================================================
+   PROJECT GRID
+   ============================================================ */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.project-card {
+    background: white;
+    overflow: hidden;
+    border-radius: 12px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.project-card img {
+    width: 100%;
+    height: 240px;
+
+    object-fit: cover;
+    display: block;
+
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.06);
+}
+
+.project-card div {
+    padding: 18px;
+}
+
+.project-card h3 {
+    color: var(--navy);
+    margin-top: 0;
+}
+
+
+/* ============================================================
+   PROJECT GALLERY
+   ============================================================ */
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+    margin-top: 40px;
+}
+
+.project-image-card {
+    position: relative;
+
+    height: 280px;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #eeeeee;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.project-image-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+}
+
+.project-image-card:hover img {
+    transform: scale(1.08);
+    filter: brightness(0.75);
+}
+
+
+/* ============================================================
+   PROJECT OVERLAY
+   ============================================================ */
+
+.project-overlay {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 25px 20px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.85)
+    );
+
+    color: white;
+
+    transform: translateY(10px);
+
+    transition: transform 0.3s ease;
+}
+
+.project-image-card:hover .project-overlay {
+    transform: translateY(0);
+}
+
+.project-overlay h3 {
+    margin: 0 0 7px;
+    font-size: 20px;
+}
+
+.project-overlay p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+
+/* ============================================================
+   PRICE PREVIEW
+   ============================================================ */
+
+.price-preview {
+    max-width: 1200px;
+}
+
+.price-category {
+    border: 1px solid var(--line);
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.price-category h3 {
+    margin: 0;
+
+    background: var(--navy);
+    color: white;
+
+    padding: 14px 18px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 14px 18px;
+
+    border-top: 1px solid var(--line);
+}
+
+.price-row strong {
+    color: var(--navy);
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+
+.contact-section {
+    background: var(--navy);
+    color: white;
+
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+
+    gap: 50px;
+
+    padding: 70px max(25px, calc((100% - 1200px) / 2));
+}
+
+.contact-section h2 {
+    color: white;
+}
+
+.contact-box {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    padding: 35px;
+
+    align-self: center;
+}
+
+
+/* ============================================================
+   PRICE PAGE
+   ============================================================ */
+
+.price-page {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 45px 20px 80px;
+}
+
+.price-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    background: linear-gradient(
+        135deg,
+        var(--navy),
+        var(--blue)
+    );
+
+    color: white;
+
+    padding: 35px;
+
+    border-radius: 8px;
+}
+
+.price-banner h1 {
+    font-size: 42px;
+    margin: 10px 0;
+}
+
+.price-banner .section-kicker {
+    color: #ffd536;
+}
+
+.date-box {
+    min-width: 170px;
+
+    background: white;
+    color: var(--navy);
+
+    padding: 20px;
+
+    text-align: center;
+
+    border-left: 5px solid var(--gold);
+}
+
+.date-box span {
+    display: block;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.date-box strong {
+    font-size: 22px;
+}
+
+.notes {
+    margin: 18px 0;
+
+    padding: 16px 20px;
+
+    background: #fff7d6;
+
+    border-left: 5px solid var(--gold);
+}
+
+
+/* ============================================================
+   CONSTRUCTION PRICE TABLE
+   ============================================================ */
+
+.price-table-card {
+    margin: 28px 0;
+
+    background: #ffffff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 10px 30px rgba(11, 43, 82, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.price-table-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 14px 35px rgba(11, 43, 82, 0.12);
+}
+
+
+/* ============================================================
+   PRICE CATEGORY HEADER
+   ============================================================ */
+
+.category-title {
+    background: linear-gradient(
+        135deg,
+        var(--navy),
+        var(--blue)
+    );
+
+    color: white;
+
+    padding: 18px 22px;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
+
+    border-left: 5px solid var(--gold);
+}
+
+
+/* ============================================================
+   PRICE TABLE HEADER
+   Description + SSP + USD
+   ============================================================ */
+
+.table-head {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        150px
+        150px;
+
+    gap: 0;
+
+    background: #eef2f6;
+
+    color: var(--navy);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    border-bottom: 2px solid #d6dee8;
+}
+
+.table-head > div {
+    padding: 15px 18px;
+
+    border-right: 1px solid var(--line);
+}
+
+.table-head > div:last-child {
+    border-right: none;
+}
+
+
+/* ============================================================
+   PRICE ROW
+   ============================================================ */
+
+.table-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        150px
+        150px;
+
+    gap: 0;
+
+    min-height: 62px;
+
+    align-items: center;
+
+    border-top: 1px solid #e5e9ef;
+
+    transition:
+        background 0.25s ease,
+        transform 0.2s ease;
+}
+
+
+/* Alternating rows */
+
+.table-row:nth-child(even) {
+    background: #fafbfd;
+}
+
+
+/* Hover */
+
+.table-row:hover {
+    background: #fff8d9;
+}
+
+
+/* Individual cells */
+
+.table-row > div {
+    padding: 16px 18px;
+
+    border-right: 1px solid #e5e9ef;
+}
+
+.table-row > div:last-child {
+    border-right: none;
+}
+
+
+/* Description */
+
+.table-row > div:first-child {
+    color: #263449;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+/* Price columns */
+
+.table-row strong {
+    display: block;
+
+    text-align: right;
+
+    color: var(--navy);
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* SSP */
+
+.table-row .ssp-price {
+    color: var(--navy);
+}
+
+
+/* USD */
+
+.table-row .usd-price {
+    color: #177245;
+}
+
+
+/* ============================================================
+   CURRENCY LABELS
+   ============================================================ */
+
+.currency-label {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    opacity: 0.65;
+}
+
+
+/* ============================================================
+   UNIT / SMALL TEXT
+   ============================================================ */
+
+.table-row small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #7a8494;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* ============================================================
+   AUTH / ADMIN LOGIN
+   ============================================================ */
+
+.auth-page {
+    min-height: 70vh;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--light);
+
+    padding: 40px;
+}
+
+.auth-card {
+    width: min(420px, 100%);
+
+    background: white;
+
+    padding: 35px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card input,
+.auth-card label {
+    display: block;
+    width: 100%;
+}
+
+.auth-card label {
+    font-weight: 700;
+
+    margin: 15px 0 7px;
+}
+
+.auth-card input {
+    padding: 12px;
+
+    border: 1px solid var(--line);
+
+    outline: none;
+}
+
+.auth-card input:focus {
+    border-color: var(--blue);
+
+    box-shadow: 0 0 0 3px rgba(23, 63, 115, 0.08);
+}
+
+.auth-card .btn {
+    margin-top: 20px;
+
+    width: 100%;
+}
+
+.auth-card small {
+    display: block;
+
+    margin-top: 15px;
+
+    color: #777;
+}
+
+
+/* ============================================================
+   ADMIN PAGE
+   ============================================================ */
+
+.admin-page {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 45px 20px 80px;
+}
+
+.admin-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.admin-card {
+    background: white;
+
+    border: 1px solid var(--line);
+
+    padding: 25px;
+
+    margin: 20px 0;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.admin-form,
+.edit-row {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1.6fr
+        1fr
+        0.8fr
+        auto;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+.admin-form select,
+.admin-form input,
+.edit-row input {
+    padding: 10px;
+
+    border: 1px solid var(--line);
+
+    min-width: 0;
+}
+
+.edit-row {
+    grid-template-columns:
+        1.7fr
+        1fr
+        0.8fr
+        auto
+        auto;
+
+    margin: 10px 0;
+}
+
+.muted {
+    color: #777;
+}
+
+
+/* ============================================================
+   FLASH MESSAGES
+   ============================================================ */
+
+.flash-wrap {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 15px auto;
+
+    padding: 0 20px;
+}
+
+.flash {
+    padding: 12px 18px;
+
+    margin-bottom: 10px;
+
+    border-radius: 5px;
+
+    font-weight: 600;
+}
+
+.flash.success {
+    background: #e6f7ed;
+
+    color: #17633a;
+
+    border: 1px solid #b7dfcb;
+}
+
+.flash.error {
+    background: #fde8e7;
+
+    color: #8b1e18;
+
+    border: 1px solid #efb4b4;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer {
+    background: var(--dark);
+
+    color: white;
+
+    margin-top: 60px;
+
+    padding: 30px 20px;
+}
+
+.footer-inner {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.footer-inner strong {
+    display: block;
+
+    font-size: 22px;
+}
+
+.footer-inner span {
+    display: block;
+
+    color: #b9c5d4;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1000px) {
+
+    .topbar {
+        padding: 10px 20px;
+    }
+
+    .brand img {
+        width: 140px;
+        height: 60px;
+    }
+
+    .main-nav {
+        gap: 2px;
+    }
+
+    .main-nav a {
+        padding: 9px 10px;
+
+        font-size: 13px;
+    }
+
+    .main-nav a i {
+        font-size: 14px;
+    }
+
+    .project-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .table-head,
+    .table-row {
+        grid-template-columns:
+            minmax(0, 1fr)
+            130px
+            130px;
+    }
+}
+
+
+/* ============================================================
+   TABLET / SMALL LAPTOP
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .intro,
+    .contact-section {
+        grid-template-columns: 1fr;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .price-banner {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .price-banner h1 {
+        font-size: 34px;
+    }
+
+    .admin-form,
+    .edit-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    /* Header */
+
+    .topbar {
+        min-height: auto;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        padding: 12px 15px;
+    }
+
+    .brand img {
+        width: 145px;
+        height: 58px;
+    }
+
+    .main-nav {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: repeat(5, 1fr);
+
+        gap: 4px;
+    }
+
+    .main-nav a {
+        flex-direction: column;
+
+        gap: 4px;
+
+        padding: 8px 3px;
+
+        font-size: 11px;
+
+        border-radius: 6px;
+    }
+
+    .main-nav a i {
+        font-size: 16px;
+    }
+
+    .main-nav a::after {
+        display: none;
+    }
+
+
+    /* Hero */
+
+    .hero {
+        min-height: 470px;
+    }
+
+    .hero-content {
+        padding: 55px 20px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+
+
+    /* General */
+
+    .section {
+        padding: 55px 18px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+
+    /* Services */
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Projects */
+
+    .project-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .project-gallery {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 14px;
+    }
+
+    .project-image-card {
+        height: 220px;
+    }
+
+
+    /* Price */
+
+    .price-page {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .price-table-card {
+        margin: 22px 0;
+
+        border-radius: 10px;
+    }
+
+    .category-title {
+        padding: 15px 16px;
+
+        font-size: 18px;
+    }
+
+    .table-head,
+    .table-row {
+        grid-template-columns:
+            minmax(0, 1fr)
+            110px
+            110px;
+    }
+
+    .table-head > div,
+    .table-row > div {
+        padding: 13px 12px;
+    }
+
+    .table-row strong {
+        font-size: 14px;
+    }
+
+
+    /* Footer */
+
+    .footer-inner {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 25px 15px;
+    }
+}
+
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 520px) {
+
+    .hero {
+        min-height: 450px;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .hero-actions .btn {
+        text-align: center;
+    }
+
+
+    /* Projects */
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .project-image-card {
+        height: 260px;
+    }
+
+
+    /* Price */
+
+    .price-table-card {
+        margin: 18px 0;
+
+        border-radius: 8px;
+    }
+
+    .category-title {
+        font-size: 16px;
+
+        padding: 14px 12px;
+    }
+
+    .table-head,
+    .table-row {
+        grid-template-columns:
+            minmax(0, 1fr)
+            85px
+            85px;
+    }
+
+    .table-head {
+        font-size: 10px;
+
+        letter-spacing: 0.4px;
+    }
+
+    .table-head > div,
+    .table-row > div {
+        padding: 12px 8px;
+    }
+
+    .table-row > div:first-child {
+        font-size: 13px;
+    }
+
+    .table-row strong {
+        font-size: 12px;
+    }
+
+    .table-row small {
+        font-size: 10px;
+    }
+
+    .currency-label {
+        font-size: 8px;
+    }
+}
+
+
+/* ============================================================
+   VERY SMALL SCREENS
+   ============================================================ */
+
+@media (max-width: 420px) {
+
+    .brand img {
+        width: 135px;
+    }
+
+    .main-nav a span {
+        font-size: 9px;
+    }
+
+    .main-nav a i {
+        font-size: 14px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .table-head,
+    .table-row {
+        grid-template-columns:
+            minmax(0, 1fr)
+            72px
+            72px;
+    }
+
+    .table-head > div,
+    .table-row > div {
+        padding: 10px 6px;
+    }
+
+    .table-row > div:first-child {
+        font-size: 12px;
+    }
+
+    .table-row strong {
+        font-size: 11px;
+    }
+}
+/* ============================================================
+   ADMIN NAVIGATION ICON
+   ============================================================ */
+
+.main-nav .admin-nav {
+    margin-left: 8px;
+
+    background: var(--navy);
+    color: white;
+
+    border-radius: 7px;
+}
+
+.main-nav .admin-nav i {
+    color: var(--gold);
+}
+
+.main-nav .admin-nav:hover {
+    background: var(--gold);
+    color: #111;
+}
+
+.main-nav .admin-nav:hover i {
+    color: #111;
+}
+
+.main-nav .admin-nav::after {
+    display: none;
+}

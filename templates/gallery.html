@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Projects | JANG BANJ{% endblock %}
+
+{% block content %}
+
+<section class="projects">
+    <div class="container">
+
+        <h1>Our Projects</h1>
+        <p>Explore some of our construction and engineering projects.</p>
+
+        <div class="project-gallery">
+
+            {% for image in images %}
+
+            <div class="project-card">
+                <img
+                    src="{{ url_for('static', filename='images/' + image) }}"
+                    alt="JANG BANJ Construction Project"
+                    loading="lazy"
+                >
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
