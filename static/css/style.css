@@ -1552,3 +1552,612 @@ footer {
 .main-nav .admin-nav::after {
     display: none;
 }
+/* ============================================================
+   JANG BANJ - ENHANCED RESPONSIVE MOBILE DESIGN
+   ============================================================ */
+
+/* Prevent horizontal page overflow */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* ============================================================
+   TABLET - 900px
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .topbar {
+        padding: 12px 20px;
+        gap: 18px;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .main-nav a {
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+
+    .intro {
+        gap: 30px;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-section {
+        gap: 30px;
+    }
+
+    .admin-form,
+    .edit-row {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE - 700px
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    /* --------------------------------------------------------
+       HEADER
+       -------------------------------------------------------- */
+
+    .site-header {
+        position: sticky;
+        top: 0;
+    }
+
+    .topbar {
+        width: 100%;
+        min-height: auto;
+        padding: 10px 10px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .brand {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .brand img {
+        width: 145px;
+        height: 58px;
+    }
+
+    /* Six navigation items */
+    .main-nav {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 4px;
+        align-items: stretch;
+    }
+
+    .main-nav a {
+        min-width: 0;
+        min-height: 58px;
+        padding: 7px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        border-radius: 6px;
+        font-size: 10px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .main-nav a i {
+        font-size: 16px;
+    }
+
+    .main-nav a::after {
+        display: none;
+    }
+
+    .main-nav .admin-nav {
+        margin-left: 0;
+    }
+
+    /* --------------------------------------------------------
+       HERO
+       -------------------------------------------------------- */
+
+    .hero {
+        min-height: 500px;
+        background-position: center;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 60px 20px;
+    }
+
+    .eyebrow {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .hero h1 {
+        font-size: clamp(42px, 12vw, 58px);
+        line-height: 0.98;
+        margin: 14px 0 15px;
+    }
+
+    .hero p {
+        max-width: 100%;
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+    .hero-actions {
+        width: 100%;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .hero-actions .btn {
+        min-height: 46px;
+    }
+
+    /* --------------------------------------------------------
+       BUTTONS
+       -------------------------------------------------------- */
+
+    .btn {
+        padding: 12px 17px;
+        font-size: 14px;
+    }
+
+    /* --------------------------------------------------------
+       GENERAL SECTIONS
+       -------------------------------------------------------- */
+
+    .section {
+        width: 100%;
+        padding: 55px 18px;
+    }
+
+    h2 {
+        font-size: clamp(28px, 8vw, 36px);
+        line-height: 1.15;
+    }
+
+    .intro {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .intro p,
+    .section-heading p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    /* --------------------------------------------------------
+       QUALITY CARD
+       -------------------------------------------------------- */
+
+    .quality-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .quality-card strong {
+        padding: 18px;
+    }
+
+    /* --------------------------------------------------------
+       SERVICES
+       -------------------------------------------------------- */
+
+    .service-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .service-card {
+        padding: 23px;
+    }
+
+    /* --------------------------------------------------------
+       PROJECTS
+       -------------------------------------------------------- */
+
+    .projects {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .project-card img {
+        height: 190px;
+    }
+
+    .project-card div {
+        padding: 14px;
+    }
+
+    .project-card h3 {
+        font-size: 17px;
+    }
+
+    .project-gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .project-image-card {
+        height: 210px;
+        border-radius: 10px;
+    }
+
+    .project-overlay {
+        padding: 18px 14px;
+    }
+
+    .project-overlay h3 {
+        font-size: 16px;
+    }
+
+    .project-overlay p {
+        font-size: 12px;
+    }
+
+    /* --------------------------------------------------------
+       CONTACT
+       -------------------------------------------------------- */
+
+    .contact-section {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 55px 18px;
+    }
+
+    .contact-box {
+        padding: 25px;
+    }
+
+    /* --------------------------------------------------------
+       PRICE PAGE
+       -------------------------------------------------------- */
+
+    .price-page {
+        width: 100%;
+        padding: 30px 12px 60px;
+    }
+
+    .price-banner {
+        padding: 25px 20px;
+        gap: 20px;
+        border-radius: 10px;
+    }
+
+    .price-banner h1 {
+        font-size: clamp(28px, 8vw, 38px);
+        line-height: 1.1;
+    }
+
+    .price-banner p {
+        font-size: 14px;
+    }
+
+    .date-box {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* --------------------------------------------------------
+       PRICE TABLE
+       -------------------------------------------------------- */
+
+    /*
+       Keep the SSP and USD columns readable.
+       Instead of squeezing everything into the phone width,
+       the table becomes horizontally scrollable.
+    */
+
+    .price-table-card {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .price-table-card .category-title {
+        min-width: 560px;
+    }
+
+    .price-table-card .table-head,
+    .price-table-card .table-row {
+        min-width: 560px;
+        grid-template-columns:
+            minmax(280px, 1fr)
+            125px
+            125px;
+    }
+
+    .table-head > div,
+    .table-row > div {
+        padding: 13px 12px;
+    }
+
+    .table-row > div:first-child {
+        font-size: 14px;
+    }
+
+    .table-row strong {
+        font-size: 14px;
+    }
+
+    .table-row small {
+        font-size: 11px;
+    }
+
+    /* --------------------------------------------------------
+       AUTH / LOGIN
+       -------------------------------------------------------- */
+
+    .auth-page {
+        min-height: 75vh;
+        padding: 25px 15px;
+    }
+
+    .auth-card {
+        width: 100%;
+        max-width: 420px;
+        padding: 25px 20px;
+    }
+
+    /* --------------------------------------------------------
+       ADMIN
+       -------------------------------------------------------- */
+
+    .admin-page {
+        width: 100%;
+        padding: 30px 12px 60px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .admin-card {
+        padding: 18px 15px;
+        margin: 15px 0;
+    }
+
+    .admin-form,
+    .edit-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .admin-form input,
+    .admin-form select,
+    .edit-row input,
+    .admin-form button,
+    .edit-row button {
+        width: 100%;
+        min-height: 44px;
+    }
+
+    /* --------------------------------------------------------
+       FLASH MESSAGES
+       -------------------------------------------------------- */
+
+    .flash-wrap {
+        padding: 0 12px;
+    }
+
+    .flash {
+        padding: 11px 13px;
+        font-size: 14px;
+    }
+
+    /* --------------------------------------------------------
+       FOOTER
+       -------------------------------------------------------- */
+
+    footer {
+        margin-top: 40px;
+        padding: 25px 15px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .footer-inner strong {
+        font-size: 20px;
+    }
+
+    .footer-inner span {
+        font-size: 14px;
+    }
+
+}
+
+
+/* ============================================================
+   SMALL PHONES - 480px
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+    /* Header */
+    .topbar {
+        padding: 8px 7px 10px;
+    }
+
+    .brand img {
+        width: 135px;
+        height: 54px;
+    }
+
+    .main-nav {
+        gap: 2px;
+    }
+
+    .main-nav a {
+        min-height: 54px;
+        padding: 6px 1px;
+        font-size: 9px;
+    }
+
+    .main-nav a i {
+        font-size: 14px;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 460px;
+    }
+
+    .hero-content {
+        padding: 50px 18px;
+    }
+
+    .hero h1 {
+        font-size: clamp(38px, 12vw, 50px);
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    /* Sections */
+    .section {
+        padding: 45px 15px;
+    }
+
+    h2 {
+        font-size: 29px;
+    }
+
+    /* Projects */
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card img {
+        height: 220px;
+    }
+
+    .project-gallery {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .project-image-card {
+        height: 250px;
+    }
+
+    /* Price */
+    .price-page {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .price-banner {
+        padding: 22px 16px;
+    }
+
+    .category-title {
+        font-size: 17px;
+    }
+
+    .price-table-card .category-title {
+        min-width: 520px;
+    }
+
+    .price-table-card .table-head,
+    .price-table-card .table-row {
+        min-width: 520px;
+        grid-template-columns:
+            minmax(270px, 1fr)
+            115px
+            115px;
+    }
+
+    /* Admin */
+    .admin-page {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .admin-card {
+        padding: 15px 12px;
+    }
+
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES - 360px
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+    .brand img {
+        width: 125px;
+        height: 50px;
+    }
+
+    .main-nav a {
+        min-height: 50px;
+        font-size: 8px;
+    }
+
+    .main-nav a i {
+        font-size: 13px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .price-table-card .category-title {
+        min-width: 500px;
+    }
+
+    .price-table-card .table-head,
+    .price-table-card .table-row {
+        min-width: 500px;
+        grid-template-columns:
+            minmax(260px, 1fr)
+            110px
+            110px;
+    }
+
+}
