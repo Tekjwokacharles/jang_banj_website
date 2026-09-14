@@ -2161,3 +2161,120 @@ body {
     }
 
 }
+/* ============================================================
+   FINAL MOBILE PRICE TABLE FIX
+   Keeps Description + SSP + USD fully accessible
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .price-table-card {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .price-table-card .category-title,
+    .price-table-card .table-head,
+    .price-table-card .table-row {
+        width: 560px;
+        min-width: 560px;
+    }
+
+    .price-table-card .table-head,
+    .price-table-card .table-row {
+        grid-template-columns: 280px 140px 140px !important;
+    }
+
+    .price-table-card .table-head > div,
+    .price-table-card .table-row > div {
+        min-width: 0;
+        padding: 13px 12px;
+    }
+
+    /* Keep the currency columns visible */
+    .price-table-card .table-head > div:nth-child(2),
+    .price-table-card .table-row > div:nth-child(2) {
+        width: 140px;
+        min-width: 140px;
+    }
+
+    .price-table-card .table-head > div:nth-child(3),
+    .price-table-card .table-row > div:nth-child(3) {
+        width: 140px;
+        min-width: 140px;
+    }
+
+    .price-table-card .table-row strong {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .price-table-card .currency-label {
+        font-size: 10px;
+        white-space: nowrap;
+    }
+}
+
+/* Smaller phones */
+@media (max-width: 480px) {
+
+    .price-table-card {
+        overflow-x: auto !important;
+    }
+
+    .price-table-card .category-title,
+    .price-table-card .table-head,
+    .price-table-card .table-row {
+        width: 520px;
+        min-width: 520px;
+    }
+
+    .price-table-card .table-head,
+    .price-table-card .table-row {
+        grid-template-columns: 260px 130px 130px !important;
+    }
+
+    .price-table-card .table-head > div:nth-child(2),
+    .price-table-card .table-row > div:nth-child(2) {
+        width: 130px;
+        min-width: 130px;
+    }
+
+    .price-table-card .table-head > div:nth-child(3),
+    .price-table-card .table-row > div:nth-child(3) {
+        width: 130px;
+        min-width: 130px;
+    }
+
+    .price-table-card .table-row strong {
+        font-size: 13px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+
+    .price-table-card .category-title,
+    .price-table-card .table-head,
+    .price-table-card .table-row {
+        width: 500px;
+        min-width: 500px;
+    }
+
+    .price-table-card .table-head,
+    .price-table-card .table-row {
+        grid-template-columns: 250px 125px 125px !important;
+    }
+
+    .price-table-card .table-head > div:nth-child(2),
+    .price-table-card .table-row > div:nth-child(2),
+    .price-table-card .table-head > div:nth-child(3),
+    .price-table-card .table-row > div:nth-child(3) {
+        width: 125px;
+        min-width: 125px;
+    }
+}
