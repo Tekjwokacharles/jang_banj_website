@@ -822,7 +822,132 @@ def add_price():
         url_for("admin_dashboard")
     )
 
+@app.route(
+    "/admin/prices/bulk-save",
+    methods=["POST"]
+)
+@admin_required
+def add_prices_bulk():
 
+    category_id = request.form.get("category_id")
+
+    descriptions = request.form.getlist("description[]")
+    price_ssp_values = request.form.getlist("price_ssp[]")
+    price_usd_values = request.form.getlist("price_usd[]")
+    units = request.form.getlist("unit[]")
+
+    if not category_id:
+        flash(
+            "Please select a category.",
+            "error"
+        )
+
+        return redirect(
+            url_for("admin_dashboard")
+        )
+
+    conn = get_db()
+
+    try:
+
+        saved_count = 0
+
+        for i, description in enumerate(descriptions):
+
+            description = description.strip()
+
+            if not description:
+                continue
+
+            try:
+
+                price_ssp = float(
+                    price_ssp_values[i] or 0
+                )
+
+                price_usd = float(
+                    price_usd_values[i] or 0
+                )
+
+            except (ValueError, IndexError):
+
+                flash(
+                    "One or more prices are invalid.",
+                    "error"
+                )
+
+                return redirect(
+                    url_for("admin_dashboard")
+                )
+
+            unit = ""
+
+            if i < len(units):
+                unit = units[i].strip()
+
+            conn.execute(
+                """
+                INSERT INTO price_items
+                (
+                    category_id,
+                    description,
+                    price,
+                    price_ssp,
+                    price_usd,
+                    unit,
+                    display_order,
+                    updated_at
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    category_id,
+                    description,
+
+                    # Keep old price column synchronized
+                    # with SSP for compatibility.
+                    price_ssp,
+
+                    price_ssp,
+                    price_usd,
+                    unit,
+
+                    0,
+
+                    datetime.now().strftime(
+                        "%Y-%m-%d"
+                    )
+                )
+            )
+
+            saved_count += 1
+
+        conn.commit()
+
+    except Exception:
+
+        conn.rollback()
+
+        flash(
+            "Unable to save the price items.",
+            "error"
+        )
+
+        return redirect(
+            url_for("admin_dashboard")
+        )
+
+    finally:
+        conn.close()
+
+    flash(
+        f"{saved_count} price item(s) saved successfully.",
+        "success"
+    )
+
+    return redirect(
+        url_for("admin_dashboard")
+    )
 # ============================================================
 # EDIT PRICE
 # ============================================================

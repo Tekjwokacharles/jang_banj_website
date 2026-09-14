@@ -1,55 +1,452 @@
 {% extends "base.html" %}
+
 {% block title %}Admin Dashboard | JANG BANJ{% endblock %}
+
 {% block content %}
+
 <section class="admin-page">
-    <div class="admin-header">
-        <div>
-            <span class="section-kicker">ADMINISTRATION</span>
-            <h1>Price Management Dashboard</h1>
-        </div>
-        <a class="btn outline" href="{{ url_for('admin_logout') }}">Logout</a>
+
+```
+<div class="admin-header">
+    <div>
+        <span class="section-kicker">ADMINISTRATION</span>
+        <h1>Price Management Dashboard</h1>
     </div>
 
-    <div class="admin-card">
-        <h2>Add Price Item</h2>
-        <form class="admin-form" method="post" action="{{ url_for('add_price') }}">
-            <select name="category_id" required>
+    <a class="btn outline" href="{{ url_for('admin_logout') }}">
+        Logout
+    </a>
+</div>
+
+
+<!-- =========================================================
+     ADD MULTIPLE PRICE ITEMS
+     ========================================================= -->
+
+<div class="admin-card">
+
+    <h2>Add Price Items</h2>
+
+    <p class="muted">
+        Select a category, enter your SSP and USD prices, then
+        save all the new items at once.
+    </p>
+
+    <form
+        method="post"
+        action="{{ url_for('add_prices_bulk') }}"
+        id="bulk-price-form"
+    >
+
+        <div class="bulk-category-row">
+
+            <label for="bulk-category">
+                Category
+            </label>
+
+            <select
+                name="category_id"
+                id="bulk-category"
+                required
+            >
+
+                <option value="" disabled selected>
+                    Select Category
+                </option>
+
                 {% for category, items in grouped %}
-                <option value="{{ category['id'] }}">{{ category['name'] }}</option>
+
+                <option value="{{ category['id'] }}">
+                    {{ category['name'] }}
+                </option>
+
                 {% endfor %}
+
             </select>
-            <input name="description" placeholder="Item / description" required>
-            <input name="price" type="number" step="0.01" placeholder="Price (SSP/USD)" required>
-            <input name="unit" placeholder="Unit e.g. m², m³, job">
-            <button class="btn primary" type="submit">Add Price</button>
-        </form>
-    </div>
 
-    <div class="admin-card">
-        <h2>Add Category</h2>
-        <form class="admin-form" method="post" action="{{ url_for('add_category') }}">
-            <input name="name" placeholder="Category name" required>
-            <button class="btn primary" type="submit">Add Category</button>
-        </form>
-    </div>
+        </div>
 
-    {% for category, items in grouped %}
-    <div class="admin-card">
-        <h2>{{ category["name"] }}</h2>
-        {% for item in items %}
-        <form class="edit-row" method="post" action="{{ url_for('edit_price', item_id=item['id']) }}">
-            <input name="description" value="{{ item['description'] }}" required>
-            <input name="price" type="number" step="0.01" value="{{ item['price'] }}" required>
-            <input name="unit" value="{{ item['unit'] }}" placeholder="Unit">
-            <button class="btn small primary" type="submit">Save</button>
-            <button class="btn small danger" type="submit"
-                    formaction="{{ url_for('delete_price', item_id=item['id']) }}"
-                    onclick="return confirm('Delete this price item?')">Delete</button>
-        </form>
-        {% else %}
-        <p class="muted">No items in this category.</p>
-        {% endfor %}
-    </div>
+
+        <div id="price-rows">
+
+            <!-- FIRST ROW -->
+
+            <div class="bulk-price-row">
+
+                <div class="price-field">
+
+                    <label>
+                        Item Description
+                    </label>
+
+                    <input
+                        type="text"
+                        name="description[]"
+                        placeholder="e.g. Cement 50kg bag"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="price-field">
+
+                    <label>
+                        SSP Price
+                    </label>
+
+                    <input
+                        type="number"
+                        name="price_ssp[]"
+                        step="0.01"
+                        min="0"
+                        placeholder="e.g. 45000"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="price-field">
+
+                    <label>
+                        USD Price
+                    </label>
+
+                    <input
+                        type="number"
+                        name="price_usd[]"
+                        step="0.01"
+                        min="0"
+                        placeholder="e.g. 10"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="price-field">
+
+                    <label>
+                        Unit
+                    </label>
+
+                    <input
+                        type="text"
+                        name="unit[]"
+                        placeholder="e.g. bag, m², m³, job"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn small danger remove-price-row"
+                    onclick="removePriceRow(this)"
+                >
+                    Remove
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="bulk-actions">
+
+            <button
+                type="button"
+                class="btn outline"
+                onclick="addPriceRow()"
+            >
+                + Add Another Item
+            </button>
+
+            <button
+                type="submit"
+                class="btn primary"
+            >
+                Save All Prices
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- =========================================================
+     ADD CATEGORY
+     ========================================================= -->
+
+<div class="admin-card">
+
+    <h2>Add Category</h2>
+
+    <form
+        class="admin-form"
+        method="post"
+        action="{{ url_for('add_category') }}"
+    >
+
+        <input
+            name="name"
+            placeholder="Category name"
+            required
+        >
+
+        <button
+            class="btn primary"
+            type="submit"
+        >
+            Add Category
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- =========================================================
+     EXISTING PRICE ITEMS
+     ========================================================= -->
+
+{% for category, items in grouped %}
+
+<div class="admin-card">
+
+    <h2>{{ category["name"] }}</h2>
+
+    {% for item in items %}
+
+    <form
+        class="edit-row"
+        method="post"
+        action="{{ url_for('edit_price', item_id=item['id']) }}"
+    >
+
+        <div class="price-field">
+
+            <label>
+                Item Description
+            </label>
+
+            <input
+                name="description"
+                value="{{ item['description'] }}"
+                required
+            >
+
+        </div>
+
+
+        <div class="price-field">
+
+            <label>
+                SSP Price
+            </label>
+
+            <input
+                name="price_ssp"
+                type="number"
+                step="0.01"
+                min="0"
+                value="{{ item['price_ssp'] }}"
+                placeholder="SSP Price"
+                required
+            >
+
+        </div>
+
+
+        <div class="price-field">
+
+            <label>
+                USD Price
+            </label>
+
+            <input
+                name="price_usd"
+                type="number"
+                step="0.01"
+                min="0"
+                value="{{ item['price_usd'] }}"
+                placeholder="USD Price"
+                required
+            >
+
+        </div>
+
+
+        <div class="price-field">
+
+            <label>
+                Unit
+            </label>
+
+            <input
+                name="unit"
+                value="{{ item['unit'] }}"
+                placeholder="Unit"
+            >
+
+        </div>
+
+
+        <button
+            class="btn small primary"
+            type="submit"
+        >
+            Save
+        </button>
+
+
+        <button
+            class="btn small danger"
+            type="submit"
+            formaction="{{ url_for('delete_price', item_id=item['id']) }}"
+            onclick="return confirm('Delete this price item?')"
+        >
+            Delete
+        </button>
+
+    </form>
+
+
+    {% else %}
+
+    <p class="muted">
+        No items in this category.
+    </p>
+
     {% endfor %}
+
+</div>
+
+{% endfor %}
+
+
 </section>
+
+<!-- =========================================================
+     BULK PRICE JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+function addPriceRow() {
+
+    const container = document.getElementById("price-rows");
+
+    const row = document.createElement("div");
+
+    row.className = "bulk-price-row";
+
+    row.innerHTML = `
+        <div class="price-field">
+
+            <label>
+                Item Description
+            </label>
+
+            <input
+                type="text"
+                name="description[]"
+                placeholder="e.g. Cement 50kg bag"
+                required
+            >
+
+        </div>
+
+
+        <div class="price-field">
+
+            <label>
+                SSP Price
+            </label>
+
+            <input
+                type="number"
+                name="price_ssp[]"
+                step="0.01"
+                min="0"
+                placeholder="e.g. 45000"
+                required
+            >
+
+        </div>
+
+
+        <div class="price-field">
+
+            <label>
+                USD Price
+            </label>
+
+            <input
+                type="number"
+                name="price_usd[]"
+                step="0.01"
+                min="0"
+                placeholder="e.g. 10"
+                required
+            >
+
+        </div>
+
+
+        <div class="price-field">
+
+            <label>
+                Unit
+            </label>
+
+            <input
+                type="text"
+                name="unit[]"
+                placeholder="e.g. bag, m², m³, job"
+            >
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn small danger remove-price-row"
+            onclick="removePriceRow(this)"
+        >
+            Remove
+        </button>
+    `;
+
+    container.appendChild(row);
+}
+
+
+function removePriceRow(button) {
+
+    const container = document.getElementById("price-rows");
+
+    const rows = container.querySelectorAll(".bulk-price-row");
+
+    /*
+     * Always keep at least one row.
+     */
+
+    if (rows.length > 1) {
+
+        button.closest(".bulk-price-row").remove();
+
+    } else {
+
+        alert("At least one price item is required.");
+
+    }
+
+}
+
+</script>
+
 {% endblock %}
